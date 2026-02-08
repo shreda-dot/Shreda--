@@ -6,7 +6,6 @@ import {
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-// 1. Import Framer Motion
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Contact = () => {
@@ -53,7 +52,7 @@ const Contact = () => {
       <Container maxWidth="md">
         <Grid container spacing={8}>
           
-          {/* Socials & Info - Animated Slide Right */}
+          {/* Socials & Info - Slide Right */}
           <Grid 
             item xs={12} md={5}
             component={motion.div}
@@ -70,27 +69,30 @@ const Contact = () => {
             </Typography>
 
             <Stack direction="row" spacing={2}>
-              {[ 
+              {[
                 { icon: <GitHubIcon fontSize="large" />, url: "https://github.com/shreda-dot" },
                 { icon: <TwitterIcon fontSize="large" />, url: "https://x.com/sha_dra_ch" },
                 { icon: <InstagramIcon fontSize="large" />, url: "#" }
               ].map((social, index) => (
-                <IconButton 
+                <motion.div
                   key={index}
-                  component={motion.a}
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
-                  color="primary" 
-                  href={social.url} 
-                  target="_blank"
                 >
-                  {social.icon}
-                </IconButton>
+                  <IconButton
+                    component="a"
+                    href={social.url}
+                    target="_blank"
+                    color="primary"
+                  >
+                    {social.icon}
+                  </IconButton>
+                </motion.div>
               ))}
             </Stack>
           </Grid>
 
-          {/* Contact Form - Animated Fade/Slide Up */}
+          {/* Contact Form - Fade Up */}
           <Grid 
             item xs={12} md={7}
             component={motion.div}
@@ -146,18 +148,17 @@ const Contact = () => {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     />
-                    <Button
-                      component={motion.button}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      type="submit"
-                      variant="contained"
-                      size="large"
-                      disabled={loading}
-                      sx={{ py: 1.5, fontWeight: 700 }}
-                    >
-                      {loading ? 'Sending…' : 'Send Message'}
-                    </Button>
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        size="large"
+                        disabled={loading}
+                        sx={{ py: 1.5, fontWeight: 700 }}
+                      >
+                        {loading ? 'Sending…' : 'Send Message'}
+                      </Button>
+                    </motion.div>
                   </Stack>
                 </motion.form>
               )}

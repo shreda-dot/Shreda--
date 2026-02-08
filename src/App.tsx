@@ -5,6 +5,7 @@ import Navbar from './components/NavBar';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Projects from './components/Project';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Experience />
       <Projects />
       <Contact />
+      <Footer />
     
     </ThemeProvider>
   );

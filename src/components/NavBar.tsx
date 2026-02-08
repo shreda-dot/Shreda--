@@ -18,13 +18,10 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => setMobileOpen((prev) => !prev);
 
-  // Smooth scroll handler
   const handleScroll = (id: string) => {
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setMobileOpen(false); // close mobile menu
+    if (element) element.scrollIntoView({ behavior: "smooth" });
+    setMobileOpen(false); // Close menu on mobile
   };
 
   return (
@@ -37,6 +34,7 @@ const Navbar = () => {
           bgcolor: "background.paper",
           borderBottom: "1px solid",
           borderColor: "rgba(148, 163, 184, 0.12)",
+          backdropFilter: "blur(10px)", // subtle frosted effect
         }}
       >
         <Container maxWidth="lg">
@@ -55,10 +53,11 @@ const Navbar = () => {
                 borderColor: "rgba(45, 212, 191, 0.35)",
                 bgcolor: "rgba(45, 212, 191, 0.06)",
                 cursor: "pointer",
-                transition: "all 0.2s ease",
+                transition: "all 0.25s ease",
                 "&:hover": {
                   borderColor: "primary.main",
                   bgcolor: "rgba(45, 212, 191, 0.12)",
+                  transform: "scale(1.05)",
                 },
               }}
             >
@@ -66,7 +65,7 @@ const Navbar = () => {
                 component="img"
                 src={logo}
                 alt="shreda logo"
-                sx={{ height: 36, width: "auto" }}
+                sx={{ height: 38, width: "auto", display: "block" }}
               />
             </Box>
 
@@ -75,7 +74,7 @@ const Navbar = () => {
             {/* Desktop Nav */}
             <Stack
               direction="row"
-              spacing={1.5}
+              spacing={2}
               sx={{ display: { xs: "none", md: "flex" } }}
             >
               {navItems.map((item) => (
@@ -86,8 +85,13 @@ const Navbar = () => {
                     color: "text.secondary",
                     fontWeight: 600,
                     fontSize: "0.95rem",
-                    px: 2.5,
-                    "&:hover": { color: "primary.main", bgcolor: "transparent" },
+                    px: 3,
+                    "&:hover": {
+                      color: "primary.main",
+                      bgcolor: "transparent",
+                      transform: "scale(1.05)",
+                    },
+                    transition: "all 0.2s ease",
                   }}
                 >
                   {item}
@@ -98,7 +102,25 @@ const Navbar = () => {
             {/* Mobile Menu Button */}
             <IconButton
               onClick={toggleMobileMenu}
-              sx={{ display: { xs: "flex", md: "none" }, color: "text.primary", ml: 1 }}
+              sx={{
+                display: { xs: "flex", md: "none" },
+                color: "text.primary",
+                ml: 1,
+                // Increase the touch target area
+                p: 1.5,
+                "& .MuiSvgIcon-root": {
+                  fontSize: { xs: "2rem", sm: "2.2rem" }, // Makes the actual icon bigger
+                },
+                // Adding a subtle background makes it easier to see/hit
+                bgcolor: "rgba(255, 255, 255, 0.03)",
+                borderRadius: "12px",
+                border: "1px solid rgba(255, 255, 255, 0.08)",
+                transition: "0.2s",
+                "&:active": {
+                  transform: "scale(0.9)", // Visual feedback when tapped
+                  bgcolor: "rgba(45, 212, 191, 0.1)",
+                },
+              }}
             >
               <MenuIcon />
             </IconButton>
@@ -115,7 +137,7 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.4 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.25 }}
               style={{
                 position: "fixed",
                 top: 0,
@@ -130,10 +152,10 @@ const Navbar = () => {
 
             {/* Slide-in Menu */}
             <motion.div
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "100%" }}
-              transition={{ type: "spring", stiffness: 100, damping: 20 }}
+              initial={{ y: "100%", opacity: 0.8, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: "100%", opacity: 0, scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 120, damping: 22 }}
               style={{
                 position: "fixed",
                 bottom: 0,
@@ -141,31 +163,32 @@ const Navbar = () => {
                 width: "100%",
                 background: "#0F172A",
                 zIndex: 100,
-                padding: "2rem",
-                borderTopLeftRadius: "20px",
-                borderTopRightRadius: "20px",
+                padding: "2.5rem",
+                borderTopLeftRadius: "24px",
+                borderTopRightRadius: "24px",
+                boxShadow: "0 -10px 40px rgba(45,212,191,0.25)",
               }}
             >
               <Stack spacing={3} alignItems="center">
-                {navItems.map((item) => (
+                {navItems.map((item, index) => (
                   <motion.div
                     key={item}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.25, delay: navItems.indexOf(item) * 0.1 }}
+                    transition={{ duration: 0.3, delay: index * 0.08 }}
                   >
                     <Button
                       onClick={() => handleScroll(item.toLowerCase())}
                       sx={{
                         color: "primary.main",
                         fontWeight: 700,
-                        fontSize: "1.2rem",
-                        px: 4,
-                        py: 1.5,
+                        fontSize: "1.25rem",
                         width: "100%",
+                        py: 1.8,
+                        borderRadius: 3,
                         bgcolor: "rgba(45,212,191,0.08)",
-                        borderRadius: 2,
                         "&:hover": { bgcolor: "rgba(45,212,191,0.15)" },
+                        transition: "all 0.2s ease",
                       }}
                     >
                       {item}
