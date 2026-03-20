@@ -41,7 +41,7 @@ const PageLoader = () => {
   const [visible, setVisible] = React.useState(true);
 
   React.useEffect(() => {
-    const t = setTimeout(() => setVisible(false), 1400);
+    const t = setTimeout(() => setVisible(false), 2000);
     return () => clearTimeout(t);
   }, []);
 
