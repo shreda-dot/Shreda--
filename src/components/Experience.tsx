@@ -12,7 +12,7 @@ const Experience = () => {
     },
     {
       company: "Apprelab Inc.",
-      role: "Front-End Engineer",
+      role: "Junior full-Stack Engineer",
       period: "2025 - Present",
       desc: "Architected scalable, reusable UI components with React and TypeScript, leading the implementation of design systems that increased development efficiency by 40% and ensured consistent branding across multiple projects.",
     },
