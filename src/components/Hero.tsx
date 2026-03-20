@@ -6,7 +6,7 @@ import Picture from '../assets/IMG-20250207-WA0045.jpg';
 
 // ── Typing animation hook ──────────────────────────────────────────────────
 const roles = [
-  'Frontend Developer',
+  'Full-Stack Developer',
   'Full-Stack Builder',
   'Biochemist turned Coder',
   'React Specialist',
@@ -124,7 +124,7 @@ const Hero = () => {
                     color="primary"
                     sx={{ fontWeight: 700, letterSpacing: 3 }}
                   >
-                    FRONTEND ENGINEER • NIGERIA
+                    FULL-STACK ENGINEER • NIGERIA
                   </Typography>
                 </motion.div>
 

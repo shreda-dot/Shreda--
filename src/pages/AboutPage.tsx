@@ -124,7 +124,7 @@ const AboutPage = () => {
               <Stack spacing={3}>
                 <motion.div variants={fadeInUp}>
                   <Typography variant="h5" color="primary" fontWeight={700}>
-                    Hi, I'm Shreda — Biochemist turned Frontend Engineer.
+                    Hi, I'm Shreda — Biochemist turned Full-Stack Developer
                   </Typography>
                 </motion.div>
 
