@@ -69,11 +69,12 @@ const Hero = () => {
       id="home"
       sx={{
         position: 'relative',
-        minHeight: '100vh',
+        minHeight: { xs: 'calc(100vh - 64px)', md: '100vh' },
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
-        py: { xs: 10, md: 0 },
+        pt: { xs: 4, md: 0 },
+        pb: { xs: 6, md: 0 },
       }}
     >
       {/* ── Floating Orbs Background ── */}

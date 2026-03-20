@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   AppBar, Box, Toolbar, Button, Container,
-  Stack, IconButton, Tooltip, useScrollTrigger,
+  Stack, IconButton, Tooltip, useScrollTrigger, Typography,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -193,50 +193,74 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileOpen && (
           <>
+            {/* Backdrop */}
             <motion.div
-              initial={{ opacity: 0 }} animate={{ opacity: 0.55 }} exit={{ opacity: 0 }}
-              transition={{ duration: 0.22 }}
+              initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
               onClick={() => setMobileOpen(false)}
               style={{ position: 'fixed', inset: 0, background: '#000', zIndex: 1200 }}
             />
+
+            {/* Right side drawer */}
             <motion.div
-              initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }}
-              transition={{ type: 'spring', stiffness: 140, damping: 22 }}
+              initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 32 }}
               style={{
-                position: 'fixed', bottom: 0, left: 0, right: 0,
-                zIndex: 1300, borderTopLeftRadius: 28, borderTopRightRadius: 28,
-                boxShadow: '0 -20px 60px rgba(189,147,249,0.3)',
-                overflow: 'hidden',
+                position: 'fixed', top: 0, right: 0, bottom: 0,
+                width: 260, zIndex: 1300,
+                boxShadow: '-12px 0 40px rgba(189,147,249,0.2)',
               }}
             >
-              <Box sx={{ bgcolor: 'background.paper', p: 2.5, pb: 4 }}>
-                <Box
-                  sx={{
-                    width: 40, height: 4, bgcolor: 'divider',
-                    borderRadius: 2, mx: 'auto', mb: 3,
-                  }}
-                />
-                <Stack spacing={1}>
+              <Box
+                sx={{
+                  bgcolor: 'background.paper',
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  pt: 3, pb: 4, px: 2,
+                  borderLeft: '1px solid',
+                  borderColor: 'divider',
+                }}
+              >
+                {/* Header row */}
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4, px: 1 }}>
+                  <Typography variant="overline" color="primary" sx={{ fontWeight: 700, letterSpacing: 2 }}>
+                    Menu
+                  </Typography>
+                  <IconButton
+                    size="small"
+                    onClick={() => setMobileOpen(false)}
+                    sx={{ color: 'text.secondary' }}
+                  >
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                </Box>
+
+                <Stack spacing={0.5} sx={{ flexGrow: 1 }}>
                   {navItems.map((item, i) => (
                     <motion.div
                       key={item.id}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: 30 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.06, duration: 0.3 }}
+                      transition={{ delay: i * 0.05, duration: 0.25 }}
                     >
                       <Button
                         fullWidth
                         onClick={() => { scrollTo(item.id); setMobileOpen(false); }}
                         sx={{
                           justifyContent: 'flex-start',
-                          px: 2.5, py: 1.4, borderRadius: 2,
-                          color: activeSection === item.id ? 'primary.main' : 'text.primary',
+                          px: 2, py: 1.3, borderRadius: 2,
+                          color: activeSection === item.id ? 'primary.main' : 'text.secondary',
                           fontWeight: activeSection === item.id ? 700 : 500,
-                          fontSize: '1rem',
-                          bgcolor: activeSection === item.id
-                            ? 'rgba(189,147,249,0.12)'
-                            : 'rgba(189,147,249,0.04)',
-                          '&:hover': { bgcolor: 'rgba(189,147,249,0.1)' },
+                          fontSize: '0.95rem',
+                          bgcolor: activeSection === item.id ? 'rgba(189,147,249,0.1)' : 'transparent',
+                          borderLeft: activeSection === item.id ? '3px solid' : '3px solid transparent',
+                          borderColor: activeSection === item.id ? 'primary.main' : 'transparent',
+                         
+                          '&:hover': {
+                            bgcolor: 'rgba(189,147,249,0.08)',
+                            color: 'primary.main',
+                          },
                         }}
                       >
                         {item.label}
@@ -244,6 +268,23 @@ const Navbar = () => {
                     </motion.div>
                   ))}
                 </Stack>
+
+                {/* Bottom theme toggle */}
+                <Box sx={{ px: 1 }}>
+                  <Button
+                    fullWidth
+                    onClick={toggleColorMode}
+                    startIcon={mode === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+                    variant="outlined"
+                    sx={{
+                      borderColor: 'divider', color: 'text.secondary',
+                      borderRadius: 2, justifyContent: 'flex-start',
+                      '&:hover': { borderColor: 'primary.main', color: 'primary.main' },
+                    }}
+                  >
+                    {mode === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                  </Button>
+                </Box>
               </Box>
             </motion.div>
           </>
