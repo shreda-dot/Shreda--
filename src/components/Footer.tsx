@@ -82,7 +82,7 @@ const Footer = () => {
               {[
                 { icon: <GitHubIcon />, url: 'https://github.com/shreda-dot' },
                 { icon: <TwitterIcon />, url: 'https://x.com/sha_dra_ch' },
-                { icon: <InstagramIcon />, url: '#' },
+                { icon: <InstagramIcon />, url: 'https://www.instagram.com/shreda_shadrach/' },
               ].map((social, i) => (
                 <IconButton
                   key={i}
