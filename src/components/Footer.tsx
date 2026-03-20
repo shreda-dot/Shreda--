@@ -1,6 +1,6 @@
-import { 
-  Box, Container, Typography, Stack, IconButton, 
-  Divider, Link, Grid, Fab, Tooltip 
+import {
+  Box, Container, Typography, Stack, IconButton,
+  Divider, Grid, Fab, Tooltip
 } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -49,20 +49,26 @@ const Footer = () => {
               Navigation
             </Typography>
             <Stack spacing={1.5}>
-              {['Home', 'Skills', 'Projects', 'Contact'].map((item) => (
-                <Link
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  underline="none"
+              {[
+                { label: 'Home',       id: 'home' },
+                { label: 'Skills',     id: 'skills' },
+                { label: 'Projects',   id: 'projects' },
+                { label: 'Contact',    id: 'contact' },
+              ].map((item) => (
+                <Typography
+                  key={item.label}
+                  variant="body2"
                   color="text.secondary"
-                  sx={{ 
+                  onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' })}
+                  sx={{
                     fontSize: '0.9rem',
-                    '&:hover': { color: 'primary.main', transform: 'translateX(5px)' }, 
-                    transition: '0.3s' 
+                    cursor: 'pointer',
+                    transition: 'all 0.25s',
+                    '&:hover': { color: 'primary.main', transform: 'translateX(5px)', display: 'inline-block' },
                   }}
                 >
-                  {item}
-                </Link>
+                  {item.label}
+                </Typography>
               ))}
             </Stack>
           </Grid>

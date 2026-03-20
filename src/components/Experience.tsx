@@ -37,7 +37,7 @@ const Experience = () => {
   };
 
   return (
-    <Container id="skills" sx={{ py: { xs: 10, md: 16 } }}>
+    <Container id="experience" component="section" sx={{ py: { xs: 10, md: 16 } }}>
       <Typography variant="h2" gutterBottom sx={{ mb: 6 }}>
         Experience
       </Typography>
