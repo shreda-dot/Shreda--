@@ -80,7 +80,7 @@ const PageLoader = () => {
                 letterSpacing: '-0.02em',
               }}
             >
-              SHREDA
+              WELCOME TO SHREDA WORLD
               <span style={{ color: '#ff79c6' }}>.</span>
             </motion.p>
           </motion.div>
