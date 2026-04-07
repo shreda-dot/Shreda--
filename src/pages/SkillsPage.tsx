@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
+import { brand } from '../theme/brandColors';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -30,7 +31,7 @@ interface Skill {
 const skillCategories: { category: string; color: string; skills: Skill[] }[] = [
   {
     category: 'Frontend',
-    color: '#bd93f9',
+    color: brand.gold,
     skills: [
       { name: 'React', level: 90 },
       { name: 'TypeScript', level: 82 },
@@ -41,7 +42,7 @@ const skillCategories: { category: string; color: string; skills: Skill[] }[] = 
   },
   {
     category: 'Backend',
-    color: '#ff79c6',
+    color: brand.rose,
     skills: [
       { name: 'Node.js', level: 78 },
       { name: 'Express', level: 76 },
@@ -52,7 +53,7 @@ const skillCategories: { category: string; color: string; skills: Skill[] }[] = 
   },
   {
     category: 'Tools & Workflow',
-    color: '#8be9fd',
+    color: brand.mist,
     skills: [
       { name: 'Git & GitHub', level: 85 },
       { name: 'Vite', level: 80 },
@@ -210,7 +211,7 @@ const SkillsPage = () => {
                   '&:hover': {
                     borderColor: 'primary.main',
                     color: 'primary.main',
-                    bgcolor: 'rgba(189,147,249,0.08)',
+                    bgcolor: 'rgba(201,168,108,0.08)',
                   },
                 }}
               />

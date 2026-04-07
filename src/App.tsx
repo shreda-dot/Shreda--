@@ -9,6 +9,7 @@ import SkillsPage from './pages/SkillsPage';
 import Projects from './components/Project';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
+import { brand } from './theme/brandColors';
 
 // ── Scroll Progress Bar ────────────────────────────────────────────────────
 const ScrollProgress = () => {
@@ -28,7 +29,7 @@ const ScrollProgress = () => {
         left: 0,
         right: 0,
         height: 3,
-        background: 'linear-gradient(90deg, #bd93f9 0%, #ff79c6 50%, #8be9fd 100%)',
+        background: `linear-gradient(90deg, ${brand.gold} 0%, ${brand.rose} 50%, ${brand.mist} 100%)`,
         transformOrigin: '0%',
         zIndex: 9999,
       }}
@@ -56,7 +57,7 @@ const PageLoader = () => {
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'linear-gradient(135deg, #282a36 0%, #44475a 100%)',
+            background: `linear-gradient(135deg, ${brand.ink} 0%, ${brand.paperElevated} 100%)`,
             zIndex: 99999,
             transformOrigin: 'top',
             display: 'flex',
@@ -75,13 +76,13 @@ const PageLoader = () => {
                 fontFamily: 'Inter, sans-serif',
                 fontSize: '2.5rem',
                 fontWeight: 900,
-                color: '#bd93f9',
+                color: brand.gold,
                 margin: 0,
                 letterSpacing: '-0.02em',
               }}
             >
               WELCOME TO SHREDA WORLD
-              <span style={{ color: '#ff79c6' }}>.</span>
+              <span style={{ color: brand.rose }}>.</span>
             </motion.p>
           </motion.div>
         </motion.div>

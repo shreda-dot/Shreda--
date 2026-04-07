@@ -3,6 +3,7 @@ import { Box, Container, Typography, Button, Stack, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import Picture from '../assets/IMG-20250207-WA0045.jpg';
+import { alpha, brand } from '../theme/brandColors';
 
 // ── Typing animation hook ──────────────────────────────────────────────────
 const roles = [
@@ -44,10 +45,10 @@ const useTypingEffect = () => {
 
 // ── Floating orb config ────────────────────────────────────────────────────
 const orbs = [
-  { color: '#bd93f9', size: 420, top: '-10%', left: '-8%',  duration: 9,  delay: 0 },
-  { color: '#ff79c6', size: 320, top: '5%',   right: '-5%', duration: 13, delay: 1.5 },
-  { color: '#8be9fd', size: 260, bottom: '0%', left: '40%', duration: 11, delay: 3 },
-  { color: '#50fa7b', size: 180, top: '55%',  left: '-3%',  duration: 15, delay: 2 },
+  { color: brand.gold, size: 420, top: '-10%', left: '-8%',  duration: 9,  delay: 0 },
+  { color: brand.rose, size: 320, top: '5%',   right: '-5%', duration: 13, delay: 1.5 },
+  { color: brand.mist, size: 260, bottom: '0%', left: '40%', duration: 11, delay: 3 },
+  { color: brand.sage, size: 180, top: '55%',  left: '-3%',  duration: 15, delay: 2 },
 ];
 
 const fadeInUp: Variants = {
@@ -184,7 +185,7 @@ const Hero = () => {
                         display: 'inline-block',
                         width: 2,
                         height: '1.2em',
-                        background: '#ff79c6',
+                        background: brand.rose,
                         borderRadius: 2,
                         verticalAlign: 'middle',
                         marginLeft: 2,
@@ -216,12 +217,12 @@ const Hero = () => {
                       onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                       sx={{
                         px: 4, py: 1.5,
-                        background: 'linear-gradient(135deg, #bd93f9 0%, #ff79c6 100%)',
+                        background: `linear-gradient(135deg, ${brand.gold} 0%, ${brand.rose} 100%)`,
                         color: '#fff',
                         '&:hover': {
-                          background: 'linear-gradient(135deg, #a875f7 0%, #ff5faf 100%)',
+                          background: `linear-gradient(135deg, #b89558 0%, #946b6b 100%)`,
                           transform: 'translateY(-3px)',
-                          boxShadow: '0 12px 28px rgba(189,147,249,0.4)',
+                          boxShadow: `0 12px 28px ${alpha('gold', 0.4)}`,
                         },
                       }}
                     >
@@ -233,11 +234,11 @@ const Hero = () => {
                       onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                       sx={{
                         px: 4, py: 1.5,
-                        borderColor: 'rgba(189,147,249,0.5)',
+                        borderColor: alpha('gold', 0.5),
                         color: 'primary.main',
                         '&:hover': {
                           borderColor: 'primary.main',
-                          bgcolor: 'rgba(189,147,249,0.08)',
+                          bgcolor: alpha('gold', 0.08),
                           transform: 'translateY(-3px)',
                         },
                       }}
@@ -272,7 +273,7 @@ const Hero = () => {
                       position: 'absolute',
                       inset: -6,
                       borderRadius: '38% 62% 55% 45% / 45% 38% 62% 55%',
-                      background: 'linear-gradient(135deg, #bd93f9, #ff79c6, #8be9fd)',
+                      background: `linear-gradient(135deg, ${brand.gold}, ${brand.rose}, ${brand.mist})`,
                       zIndex: 0,
                       animation: 'morphBorder 8s ease-in-out infinite',
                     },
@@ -331,7 +332,7 @@ const Hero = () => {
               sx={{
                 width: 24, height: 38, borderRadius: 12,
                 border: '2px solid',
-                borderColor: 'rgba(189,147,249,0.4)',
+                borderColor: alpha('gold', 0.4),
                 display: 'flex', justifyContent: 'center', pt: 0.8,
               }}
             >

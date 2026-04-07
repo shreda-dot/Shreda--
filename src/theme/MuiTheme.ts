@@ -1,21 +1,6 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import type { PaletteMode } from '@mui/material';
-
-// ─── Dracula Palette ──────────────────────────────────────────────────────────
-const dracula = {
-  background: '#282a36',
-  currentLine: '#44475a',
-  selection: '#44475a',
-  foreground: '#f8f8f2',
-  comment: '#6272a4',
-  purple: '#bd93f9',
-  pink: '#ff79c6',
-  cyan: '#8be9fd',
-  green: '#50fa7b',
-  yellow: '#f1fa8c',
-  orange: '#ffb86c',
-  red: '#ff5555',
-};
+import { brand } from './brandColors';
 
 // ─── Theme Factory ────────────────────────────────────────────────────────────
 export const buildTheme = (mode: PaletteMode) => {
@@ -25,25 +10,25 @@ export const buildTheme = (mode: PaletteMode) => {
     palette: {
       mode,
       primary: {
-        main: dracula.purple,
-        contrastText: isDark ? dracula.background : '#ffffff',
+        main: brand.gold,
+        contrastText: isDark ? brand.ink : '#1a1816',
       },
       secondary: {
-        main: dracula.pink,
+        main: brand.rose,
       },
       background: {
-        default: isDark ? dracula.background : '#f8f8f2',
-        paper: isDark ? dracula.currentLine : '#ffffff',
+        default: isDark ? brand.ink : '#f5f1ea',
+        paper: isDark ? brand.paper : '#ffffff',
       },
       text: {
-        primary: isDark ? dracula.foreground : dracula.background,
-        secondary: isDark ? dracula.comment : '#555770',
+        primary: isDark ? brand.cream : '#1a1816',
+        secondary: isDark ? brand.muted : '#5c564d',
       },
-      info: { main: dracula.cyan },
-      success: { main: dracula.green },
-      warning: { main: dracula.orange },
-      error: { main: dracula.red },
-      divider: isDark ? 'rgba(98,114,164,0.25)' : 'rgba(40,42,54,0.12)',
+      info: { main: brand.mist },
+      success: { main: brand.sage },
+      warning: { main: brand.amber },
+      error: { main: '#c45c5c' },
+      divider: isDark ? 'rgba(154, 146, 136, 0.18)' : 'rgba(26, 24, 22, 0.12)',
     },
     typography: {
       fontFamily: '"Inter", "system-ui", sans-serif',
@@ -74,7 +59,7 @@ export const buildTheme = (mode: PaletteMode) => {
             transition: 'all 0.3s ease',
             '&:hover': {
               transform: 'translateY(-2px)',
-              boxShadow: `0 8px 20px rgba(189,147,249,0.35)`,
+              boxShadow: `0 8px 20px rgba(201, 168, 108, 0.35)`,
             },
             '&:active': { transform: 'scale(0.97)' },
           },
@@ -95,7 +80,7 @@ export const buildTheme = (mode: PaletteMode) => {
             transition: 'transform 0.3s ease, box-shadow 0.3s ease',
             '&:hover': {
               transform: 'translateY(-4px)',
-              boxShadow: `0 20px 40px rgba(189,147,249,0.2)`,
+              boxShadow: `0 20px 40px rgba(201, 168, 108, 0.18)`,
             },
           },
         },

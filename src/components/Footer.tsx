@@ -23,9 +23,8 @@ const Footer = () => {
         pt: 10,
         pb: 6,
         // Using a slightly different shade for separation
-        bgcolor: 'rgba(15, 23, 42, 0.5)', 
-        // Adding a more defined border with your primary theme color
-        borderTop: '1px solid rgba(45, 212, 191, 0.15)', 
+        bgcolor: 'rgba(20, 18, 16, 0.55)',
+        borderTop: '1px solid rgba(201, 168, 108, 0.2)', 
         position: 'relative',
         backdropFilter: 'blur(10px)', // Subtle glassmorphism effect
       }}
@@ -94,7 +93,7 @@ const Footer = () => {
                     border: '1px solid rgba(255, 255, 255, 0.05)',
                     '&:hover': { 
                       color: 'primary.main', 
-                      bgcolor: 'rgba(45, 212, 191, 0.05)',
+                      bgcolor: 'rgba(201, 168, 108, 0.06)',
                       borderColor: 'primary.main' 
                     },
                     transition: '0.3s'
@@ -127,11 +126,11 @@ const Footer = () => {
               color="primary"
               onClick={scrollToTop}
               component={motion.button}
-              whileHover={{ y: -5, boxShadow: '0 8px 20px rgba(45, 212, 191, 0.4)' }}
+              whileHover={{ y: -5, boxShadow: '0 8px 20px rgba(201, 168, 108, 0.4)' }}
               whileTap={{ scale: 0.9 }}
               sx={{ 
                 transition: '0.3s',
-                boxShadow: '0 4px 14px 0 rgba(45, 212, 191, 0.3)' 
+                boxShadow: '0 4px 14px 0 rgba(201, 168, 108, 0.35)' 
               }}
             >
               <KeyboardArrowUpIcon />

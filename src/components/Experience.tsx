@@ -62,11 +62,11 @@ const Experience = () => {
                 borderColor: "rgba(255,255,255,0.05)",
                 cursor: "default",
                 borderRadius: 3,
-                boxShadow: "0 12px 24px rgba(45,212,191,0.08)",
+                boxShadow: "0 12px 24px rgba(201,168,108,0.1)",
                 transition: "all 0.3s",
                 "&:hover": {
                   transform: "translateY(-4px)",
-                  boxShadow: "0 20px 40px rgba(45,212,191,0.15)",
+                  boxShadow: "0 20px 40px rgba(201,168,108,0.18)",
                 },
               }}
             >

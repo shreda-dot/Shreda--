@@ -99,7 +99,7 @@ const AboutPage = () => {
                   overflow: 'hidden',
                   border: '2px solid',
                   borderColor: 'primary.main',
-                  boxShadow: '0 0 60px rgba(189,147,249,0.2)',
+                  boxShadow: '0 0 60px rgba(201,168,108,0.2)',
                   aspectRatio: '4/5',
                 }}
               >
@@ -170,10 +170,10 @@ const AboutPage = () => {
                           label={tag}
                           size="small"
                           sx={{
-                            bgcolor: 'rgba(189,147,249,0.12)',
+                            bgcolor: 'rgba(201,168,108,0.12)',
                             color: 'primary.main',
                             fontWeight: 600,
-                            border: '1px solid rgba(189,147,249,0.3)',
+                            border: '1px solid rgba(201,168,108,0.3)',
                           }}
                         />
                       )
@@ -207,7 +207,7 @@ const AboutPage = () => {
                     transition: 'all 0.3s',
                     '&:hover': {
                       borderColor: 'primary.main',
-                      boxShadow: '0 12px 30px rgba(189,147,249,0.15)',
+                      boxShadow: '0 12px 30px rgba(201,168,108,0.15)',
                       transform: 'translateY(-4px)',
                     },
                   }}

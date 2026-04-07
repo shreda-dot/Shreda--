@@ -8,6 +8,7 @@ import {
 } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { brand } from '../theme/brandColors';
 
 const projects = [
   {
@@ -16,7 +17,7 @@ const projects = [
       'A modern personal portfolio built with React, MUI, and Framer Motion. Fully responsive with smooth scroll, typing animation, and interactive animations.',
     tech: ['React', 'MUI', 'Framer Motion', 'TypeScript'],
     link: 'https://t.co/JLB6cLCLSm',
-    accent: '#bd93f9',
+    accent: brand.gold,
   },
   {
     title: 'E-Commerce Dashboard',
@@ -24,7 +25,7 @@ const projects = [
       'Admin dashboard for an e-commerce platform with dynamic charts, data tables, and reusable UI components. Built with React and TypeScript.',
     tech: ['React', 'TypeScript', 'Chart.js'],
     link: 'https://e-commerce-shreda-4.onrender.com',
-    accent: '#ff79c6',
+    accent: brand.rose,
   },
   {
     title: 'DX Innovation App',
@@ -32,7 +33,7 @@ const projects = [
       'A scalable landing page with responsive layouts and interactive data visualisation charts. Designed for seamless performance and future expansion.',
     tech: ['React', 'TypeScript', 'Recharts'],
     link: 'https://www.dxinnovationhub.com/',
-    accent: '#8be9fd',
+    accent: brand.mist,
   },
 ];
 

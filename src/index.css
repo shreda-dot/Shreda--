@@ -24,7 +24,7 @@ body {
   flex-direction: column;
 }
 
-/* Scrollbar styling (Dracula-flavored) */
+/* Scrollbar — champagne gold tint */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -32,9 +32,9 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(189, 147, 249, 0.35);
+  background: rgba(201, 168, 108, 0.35);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(189, 147, 249, 0.6);
+  background: rgba(201, 168, 108, 0.55);
 }
