@@ -86,8 +86,13 @@ const AboutPage = () => {
 
         {/* ── Main Content ── */}
         <Grid container spacing={8} alignItems="center">
-          {/* Image */}
-          <Grid item xs={12} md={4}>
+          {/* Image — mobile only; Hero already shows portrait on desktop */}
+          <Grid
+            item
+            xs={12}
+            md={4}
+            sx={{ display: { xs: 'block', md: 'none' } }}
+          >
             <motion.div
               initial={{ opacity: 0, scale: 0.88 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -95,6 +100,8 @@ const AboutPage = () => {
             >
               <Box
                 sx={{
+                  maxWidth: 400,
+                  mx: { xs: 'auto', md: 0 },
                   borderRadius: '24px',
                   overflow: 'hidden',
                   border: '2px solid',
@@ -113,8 +120,8 @@ const AboutPage = () => {
             </motion.div>
           </Grid>
 
-          {/* Text */}
-          <Grid item xs={12} md={8}>
+          {/* Text — full width on md+ (no side image) */}
+          <Grid item xs={12} md={12}>
             <Box
               component={motion.div}
               initial="hidden"
