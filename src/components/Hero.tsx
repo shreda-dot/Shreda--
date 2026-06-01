@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Container, Typography, Button, Stack, Grid } from '@mui/material';
+import { Box, Container, Typography, Button, Stack, Grid, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import Picture from '../assets/IMG-20250207-WA0045.jpg';
@@ -63,6 +63,14 @@ const stagger: Variants = {
 
 const Hero = () => {
   const typedText = useTypingEffect();
+  const theme = useTheme();
+  const accent = {
+    primary: theme.palette.primary.main,
+    secondary: theme.palette.secondary.main,
+    info: theme.palette.info.main,
+    success: theme.palette.success.main,
+    warning: theme.palette.warning.main,
+  };
 
   return (
     <Box
@@ -185,7 +193,7 @@ const Hero = () => {
                         display: 'inline-block',
                         width: 2,
                         height: '1.2em',
-                        background: brand.rose,
+                        background: accent.secondary,
                         borderRadius: 2,
                         verticalAlign: 'middle',
                         marginLeft: 2,
@@ -217,12 +225,14 @@ const Hero = () => {
                       onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                       sx={{
                         px: 4, py: 1.5,
-                        background: `linear-gradient(135deg, ${brand.gold} 0%, ${brand.rose} 100%)`,
+                        background: `linear-gradient(135deg, ${accent.primary} 0%, ${accent.secondary} 100%)`,
                         color: '#fff',
                         '&:hover': {
-                          background: `linear-gradient(135deg, #b89558 0%, #946b6b 100%)`,
+                          background: `linear-gradient(135deg, ${accent.success} 0%, ${accent.warning} 100%)`,
                           transform: 'translateY(-3px)',
-                          boxShadow: `0 12px 28px ${alpha('gold', 0.4)}`,
+                          boxShadow: theme.palette.mode === 'dark'
+                            ? `0 12px 28px ${alpha('gold', 0.4)}`
+                            : '0 12px 28px rgba(47, 107, 0, 0.24)',
                         },
                       }}
                     >
@@ -234,11 +244,11 @@ const Hero = () => {
                       onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                       sx={{
                         px: 4, py: 1.5,
-                        borderColor: alpha('gold', 0.5),
+                        borderColor: theme.palette.mode === 'dark' ? alpha('gold', 0.5) : 'rgba(47, 107, 0, 0.45)',
                         color: 'primary.main',
                         '&:hover': {
                           borderColor: 'primary.main',
-                          bgcolor: alpha('gold', 0.08),
+                          bgcolor: theme.palette.mode === 'dark' ? alpha('gold', 0.08) : 'rgba(47, 107, 0, 0.08)',
                           transform: 'translateY(-3px)',
                         },
                       }}
@@ -273,7 +283,7 @@ const Hero = () => {
                       position: 'absolute',
                       inset: -6,
                       borderRadius: '38% 62% 55% 45% / 45% 38% 62% 55%',
-                      background: `linear-gradient(135deg, ${brand.gold}, ${brand.rose}, ${brand.mist})`,
+                      background: `linear-gradient(135deg, ${accent.primary}, ${accent.secondary}, ${accent.info})`,
                       zIndex: 0,
                       animation: 'morphBorder 8s ease-in-out infinite',
                     },
@@ -332,7 +342,7 @@ const Hero = () => {
               sx={{
                 width: 24, height: 38, borderRadius: 12,
                 border: '2px solid',
-                borderColor: alpha('gold', 0.4),
+                borderColor: theme.palette.mode === 'dark' ? alpha('gold', 0.4) : 'rgba(47, 107, 0, 0.38)',
                 display: 'flex', justifyContent: 'center', pt: 0.8,
               }}
             >

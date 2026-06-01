@@ -10,6 +10,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useColorMode } from '../context/ThemeContext';
 import logo from '../assets/logo.png';
+import { alpha } from '../theme/brandColors';
 
 const navItems = [
   { label: 'Home',       id: 'home' },
@@ -29,6 +30,10 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = React.useState('home');
   const { mode, toggleColorMode } = useColorMode();
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 40 });
+  const accentAlpha = React.useCallback(
+    (opacity: number) => (mode === 'dark' ? alpha('gold', opacity) : `rgba(47, 107, 0, ${opacity})`),
+    [mode]
+  );
 
   // ── Scroll-spy via IntersectionObserver ──────────────────────────────────
   React.useEffect(() => {
@@ -77,13 +82,13 @@ const Navbar = () => {
               sx={{
                 display: 'flex', alignItems: 'center',
                 p: 0.6, borderRadius: 2, border: '1px solid',
-                borderColor: 'rgba(201,168,108,0.35)',
-                bgcolor: 'rgba(201,168,108,0.06)',
+                borderColor: accentAlpha(0.35),
+                bgcolor: accentAlpha(0.06),
                 cursor: 'pointer', transition: 'all 0.25s',
                 background: 'none',
                 '&:hover': {
                   borderColor: 'primary.main',
-                  bgcolor: 'rgba(201,168,108,0.14)',
+                  bgcolor: accentAlpha(0.14),
                   transform: 'scale(1.06)',
                 },
               }}
@@ -110,8 +115,8 @@ const Navbar = () => {
                         position: 'absolute',
                         inset: 0,
                         borderRadius: 10,
-                        background: 'rgba(201,168,108,0.13)',
-                        border: '1px solid rgba(201,168,108,0.28)',
+                        background: accentAlpha(0.13),
+                        border: `1px solid ${accentAlpha(0.28)}`,
                       }}
                     />
                   )}
@@ -143,10 +148,10 @@ const Navbar = () => {
                   sx={{
                     ml: 1.5,
                     color: 'primary.main',
-                    border: '1px solid rgba(201,168,108,0.35)',
-                    bgcolor: 'rgba(201,168,108,0.06)',
+                    border: `1px solid ${accentAlpha(0.35)}`,
+                    bgcolor: accentAlpha(0.06),
                     transition: 'all 0.25s',
-                    '&:hover': { bgcolor: 'rgba(201,168,108,0.16)', borderColor: 'primary.main' },
+                    '&:hover': { bgcolor: accentAlpha(0.16), borderColor: 'primary.main' },
                   }}
                 >
                   <AnimatePresence mode="wait" initial={false}>
@@ -177,8 +182,8 @@ const Navbar = () => {
                 onClick={() => setMobileOpen((p) => !p)}
                 sx={{
                   color: 'text.primary', p: 1.2,
-                  bgcolor: 'rgba(201,168,108,0.06)', borderRadius: '10px',
-                  border: '1px solid rgba(201,168,108,0.2)', transition: '0.2s',
+                  bgcolor: accentAlpha(0.06), borderRadius: '10px',
+                  border: `1px solid ${accentAlpha(0.2)}`, transition: '0.2s',
                   '&:active': { transform: 'scale(0.9)' },
                 }}
               >
@@ -208,7 +213,7 @@ const Navbar = () => {
               style={{
                 position: 'fixed', top: 0, right: 0, bottom: 0,
                 width: 260, zIndex: 1300,
-                boxShadow: '-12px 0 40px rgba(201,168,108,0.2)',
+                boxShadow: `-12px 0 40px ${accentAlpha(0.18)}`,
               }}
             >
               <Box
@@ -253,12 +258,12 @@ const Navbar = () => {
                           color: activeSection === item.id ? 'primary.main' : 'text.secondary',
                           fontWeight: activeSection === item.id ? 700 : 500,
                           fontSize: '0.95rem',
-                          bgcolor: activeSection === item.id ? 'rgba(201,168,108,0.1)' : 'transparent',
+                          bgcolor: activeSection === item.id ? accentAlpha(0.1) : 'transparent',
                           borderLeft: activeSection === item.id ? '3px solid' : '3px solid transparent',
                           borderColor: activeSection === item.id ? 'primary.main' : 'transparent',
                          
                           '&:hover': {
-                            bgcolor: 'rgba(201,168,108,0.08)',
+                            bgcolor: accentAlpha(0.08),
                             color: 'primary.main',
                           },
                         }}

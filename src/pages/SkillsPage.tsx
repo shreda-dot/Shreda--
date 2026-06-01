@@ -8,10 +8,11 @@ import {
   Chip,
   Stack,
   Divider,
+  useTheme,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { brand } from '../theme/brandColors';
+import { alpha } from '../theme/brandColors';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -28,42 +29,6 @@ interface Skill {
   level: number; // 0–100
 }
 
-const skillCategories: { category: string; color: string; skills: Skill[] }[] = [
-  {
-    category: 'Frontend',
-    color: brand.gold,
-    skills: [
-      { name: 'React', level: 90 },
-      { name: 'TypeScript', level: 82 },
-      { name: 'Material UI (MUI)', level: 88 },
-      { name: 'HTML / CSS', level: 92 },
-      { name: 'Framer Motion', level: 75 },
-    ],
-  },
-  {
-    category: 'Backend',
-    color: brand.rose,
-    skills: [
-      { name: 'Node.js', level: 78 },
-      { name: 'Express', level: 76 },
-      { name: 'MongoDB', level: 74 },
-      { name: 'Mongoose', level: 72 },
-      { name: 'REST APIs', level: 80 },
-    ],
-  },
-  {
-    category: 'Tools & Workflow',
-    color: brand.mist,
-    skills: [
-      { name: 'Git & GitHub', level: 85 },
-      { name: 'Vite', level: 80 },
-      { name: 'VS Code', level: 90 },
-      { name: 'Figma (reading designs)', level: 68 },
-      { name: 'npm / pnpm', level: 82 },
-    ],
-  },
-];
-
 const otherTech = [
   'JavaScript (ES2022+)',
   'Axios',
@@ -77,6 +42,43 @@ const otherTech = [
 ];
 
 const SkillsPage = () => {
+  const theme = useTheme();
+  const skillCategories: { category: string; color: string; skills: Skill[] }[] = [
+    {
+      category: 'Frontend',
+      color: theme.palette.primary.main,
+      skills: [
+        { name: 'React', level: 90 },
+        { name: 'TypeScript', level: 82 },
+        { name: 'Material UI (MUI)', level: 88 },
+        { name: 'HTML / CSS', level: 92 },
+        { name: 'Framer Motion', level: 75 },
+      ],
+    },
+    {
+      category: 'Backend',
+      color: theme.palette.secondary.main,
+      skills: [
+        { name: 'Node.js', level: 78 },
+        { name: 'Express', level: 76 },
+        { name: 'MongoDB', level: 74 },
+        { name: 'Mongoose', level: 72 },
+        { name: 'REST APIs', level: 80 },
+      ],
+    },
+    {
+      category: 'Tools & Workflow',
+      color: theme.palette.info.main,
+      skills: [
+        { name: 'Git & GitHub', level: 85 },
+        { name: 'Vite', level: 80 },
+        { name: 'VS Code', level: 90 },
+        { name: 'Figma (reading designs)', level: 68 },
+        { name: 'npm / pnpm', level: 82 },
+      ],
+    },
+  ];
+
   return (
     <Box component="section" id="skills" sx={{ py: { xs: 8, md: 14 } }}>
       <Container maxWidth="lg">
@@ -211,7 +213,7 @@ const SkillsPage = () => {
                   '&:hover': {
                     borderColor: 'primary.main',
                     color: 'primary.main',
-                    bgcolor: 'rgba(201,168,108,0.08)',
+                    bgcolor: theme.palette.mode === 'dark' ? alpha('gold', 0.08) : 'rgba(47, 107, 0, 0.08)',
                   },
                 }}
               />

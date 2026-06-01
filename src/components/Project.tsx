@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Container, Typography, Stack, Button, Chip, Grid, Divider } from '@mui/material';
+import { Box, Container, Typography, Stack, Button, Chip, Grid, Divider, useTheme } from '@mui/material';
 import {
   motion,
   useMotionValue,
@@ -8,16 +8,14 @@ import {
 } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { brand } from '../theme/brandColors';
-
-const projects = [
+const projectData = [
   {
     title: 'Portfolio Website',
     description:
       'A modern personal portfolio built with React, MUI, and Framer Motion. Fully responsive with smooth scroll, typing animation, and interactive animations.',
     tech: ['React', 'MUI', 'Framer Motion', 'TypeScript'],
     link: 'https://t.co/JLB6cLCLSm',
-    accent: brand.gold,
+    accent: 'primary',
   },
   {
     title: 'E-Commerce Dashboard',
@@ -25,7 +23,7 @@ const projects = [
       'Admin dashboard for an e-commerce platform with dynamic charts, data tables, and reusable UI components. Built with React and TypeScript.',
     tech: ['React', 'TypeScript', 'Chart.js'],
     link: 'https://e-commerce-shreda-4.onrender.com',
-    accent: brand.rose,
+    accent: 'secondary',
   },
   {
     title: 'DX Innovation App',
@@ -33,16 +31,18 @@ const projects = [
       'A scalable landing page with responsive layouts and interactive data visualisation charts. Designed for seamless performance and future expansion.',
     tech: ['React', 'TypeScript', 'Recharts'],
     link: 'https://www.dxinnovationhub.com/',
-    accent: brand.mist,
+    accent: 'info',
   },
 ];
+
+type ProjectItem = Omit<(typeof projectData)[0], 'accent'> & { accent: string };
 
 // ── 3D Tilt Card ────────────────────────────────────────────────────────────
 const TiltCard = ({
   project,
   index,
 }: {
-  project: (typeof projects)[0];
+  project: ProjectItem;
   index: number;
 }) => {
   const cardRef = React.useRef<HTMLDivElement>(null);
@@ -188,6 +188,17 @@ const fadeUp: Variants = {
 };
 
 const Projects = () => {
+  const theme = useTheme();
+  const projects: ProjectItem[] = projectData.map((project) => ({
+    ...project,
+    accent:
+      project.accent === 'secondary'
+        ? theme.palette.secondary.main
+        : project.accent === 'info'
+          ? theme.palette.info.main
+          : theme.palette.primary.main,
+  }));
+
   return (
     <Box
       component="section"
@@ -196,35 +207,35 @@ const Projects = () => {
     >
       <Container maxWidth="lg">
         {/* Header */}
-        <Box
-          component={motion.div}
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={stagger}
-          sx={{ mb: 8 }}
         >
-          <motion.div variants={fadeUp}>
-            <Typography
-              variant="overline"
-              color="primary"
-              sx={{ fontWeight: 700, letterSpacing: 3 }}
-            >
-              WHAT I'VE BUILT
-            </Typography>
-          </motion.div>
-          <motion.div variants={fadeUp}>
-            <Typography variant="h2" sx={{ mt: 1, mb: 2 }}>
-              Featured{' '}
-              <Box component="span" color="secondary.main">
-                Projects
-              </Box>
-            </Typography>
-          </motion.div>
-          <motion.div variants={fadeUp}>
-            <Divider sx={{ width: 80, borderWidth: 3, borderColor: 'primary.main', borderRadius: 2 }} />
-          </motion.div>
-        </Box>
+          <Box sx={{ mb: 8 }}>
+            <motion.div variants={fadeUp}>
+              <Typography
+                variant="overline"
+                color="primary"
+                sx={{ fontWeight: 700, letterSpacing: 3 }}
+              >
+                WHAT I'VE BUILT
+              </Typography>
+            </motion.div>
+            <motion.div variants={fadeUp}>
+              <Typography variant="h2" sx={{ mt: 1, mb: 2 }}>
+                Featured{' '}
+                <Box component="span" color="secondary.main">
+                  Projects
+                </Box>
+              </Typography>
+            </motion.div>
+            <motion.div variants={fadeUp}>
+              <Divider sx={{ width: 80, borderWidth: 3, borderColor: 'primary.main', borderRadius: 2 }} />
+            </motion.div>
+          </Box>
+        </motion.div>
 
         {/* Cards */}
         <Grid container spacing={4}>

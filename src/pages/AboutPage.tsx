@@ -7,6 +7,7 @@ import {
   Chip,
   Stack,
   Divider,
+  useTheme,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
@@ -14,6 +15,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import CodeIcon from '@mui/icons-material/Code';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import Picture from '../assets/IMG-20250207-WA0045.jpg';
+import { alpha } from '../theme/brandColors';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -44,6 +46,10 @@ const milestones = [
 ];
 
 const AboutPage = () => {
+  const theme = useTheme();
+  const accentAlpha = (opacity: number) =>
+    theme.palette.mode === 'dark' ? alpha('gold', opacity) : `rgba(47, 107, 0, ${opacity})`;
+
   return (
     <Box component="section" id="about" sx={{ py: { xs: 8, md: 14 } }}>
       <Container maxWidth="lg">
@@ -106,7 +112,7 @@ const AboutPage = () => {
                   overflow: 'hidden',
                   border: '2px solid',
                   borderColor: 'primary.main',
-                  boxShadow: '0 0 60px rgba(201,168,108,0.2)',
+                  boxShadow: `0 0 60px ${accentAlpha(0.2)}`,
                   aspectRatio: '4/5',
                 }}
               >
@@ -177,10 +183,10 @@ const AboutPage = () => {
                           label={tag}
                           size="small"
                           sx={{
-                            bgcolor: 'rgba(201,168,108,0.12)',
+                            bgcolor: accentAlpha(0.12),
                             color: 'primary.main',
                             fontWeight: 600,
-                            border: '1px solid rgba(201,168,108,0.3)',
+                            border: `1px solid ${accentAlpha(0.3)}`,
                           }}
                         />
                       )
@@ -214,7 +220,7 @@ const AboutPage = () => {
                     transition: 'all 0.3s',
                     '&:hover': {
                       borderColor: 'primary.main',
-                      boxShadow: '0 12px 30px rgba(201,168,108,0.15)',
+                      boxShadow: `0 12px 30px ${accentAlpha(0.15)}`,
                       transform: 'translateY(-4px)',
                     },
                   }}

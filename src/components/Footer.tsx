@@ -1,14 +1,20 @@
 import {
   Box, Container, Typography, Stack, IconButton,
-  Divider, Grid, Fab, Tooltip
+  Divider, Grid, Fab, Tooltip, useTheme
 } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { motion } from 'framer-motion';
+import { alpha, brand } from '../theme/brandColors';
 
 const Footer = () => {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+  const accentWash = isDark ? alpha('gold', 0.06) : 'rgba(47, 107, 0, 0.08)';
+  const accentBorder = isDark ? alpha('gold', 0.22) : 'rgba(47, 107, 0, 0.22)';
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -22,11 +28,11 @@ const Footer = () => {
       sx={{
         pt: 10,
         pb: 6,
-        // Using a slightly different shade for separation
-        bgcolor: 'rgba(20, 18, 16, 0.55)',
-        borderTop: '1px solid rgba(201, 168, 108, 0.2)', 
+        bgcolor: isDark ? 'rgba(7, 9, 8, 0.72)' : '#ffffff',
+        borderTop: `1px solid ${accentBorder}`, 
         position: 'relative',
-        backdropFilter: 'blur(10px)', // Subtle glassmorphism effect
+        boxShadow: isDark ? 'none' : '0 -18px 50px rgba(16, 22, 16, 0.08)',
+        backdropFilter: 'blur(10px)',
       }}
     >
       <Container maxWidth="lg">
@@ -35,7 +41,7 @@ const Footer = () => {
           {/* Brand/Logo Section */}
           <Grid item xs={12} md={4}>
             <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, color: 'primary.main', letterSpacing: 1 }}>
-              SHREDA<span style={{ color: '#fff' }}>.</span>
+              SHREDA<span style={{ color: isDark ? brand.rose : theme.palette.secondary.main }}>.</span>
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 300, mb: 3, lineHeight: 1.7 }}>
               Engineering performant web interfaces with a focus on clean code and exceptional user experience.
@@ -90,10 +96,10 @@ const Footer = () => {
                   target="_blank"
                   sx={{ 
                     color: 'text.secondary', 
-                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(16, 22, 16, 0.1)'}`,
                     '&:hover': { 
                       color: 'primary.main', 
-                      bgcolor: 'rgba(201, 168, 108, 0.06)',
+                      bgcolor: accentWash,
                       borderColor: 'primary.main' 
                     },
                     transition: '0.3s'
@@ -106,7 +112,7 @@ const Footer = () => {
           </Grid>
         </Grid>
 
-        <Divider sx={{ my: 6, opacity: 0.05 }} />
+        <Divider sx={{ my: 6, opacity: isDark ? 0.08 : 0.45 }} />
 
         {/* Bottom Bar */}
         <Stack
@@ -126,11 +132,18 @@ const Footer = () => {
               color="primary"
               onClick={scrollToTop}
               component={motion.button}
-              whileHover={{ y: -5, boxShadow: '0 8px 20px rgba(201, 168, 108, 0.4)' }}
+              whileHover={{
+                y: -5,
+                boxShadow: isDark
+                  ? `0 8px 20px ${alpha('gold', 0.4)}`
+                  : '0 8px 20px rgba(47, 107, 0, 0.28)',
+              }}
               whileTap={{ scale: 0.9 }}
               sx={{ 
                 transition: '0.3s',
-                boxShadow: '0 4px 14px 0 rgba(201, 168, 108, 0.35)' 
+                boxShadow: isDark
+                  ? `0 4px 14px 0 ${alpha('gold', 0.35)}`
+                  : '0 4px 14px rgba(47, 107, 0, 0.24)' 
               }}
             >
               <KeyboardArrowUpIcon />

@@ -1,34 +1,47 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import type { PaletteMode } from '@mui/material';
-import { brand } from './brandColors';
+import { alpha, brand } from './brandColors';
 
 // ─── Theme Factory ────────────────────────────────────────────────────────────
 export const buildTheme = (mode: PaletteMode) => {
   const isDark = mode === 'dark';
+  const palette = {
+    primary: isDark ? brand.gold : '#2f6b00',
+    secondary: isDark ? brand.rose : '#d72843',
+    info: isDark ? brand.mist : '#007f9c',
+    success: isDark ? brand.sage : '#138a57',
+    warning: isDark ? brand.amber : '#a66800',
+    defaultBg: isDark ? brand.ink : '#f6f8f0',
+    paperBg: isDark ? brand.paper : '#ffffff',
+    elevatedBg: isDark ? brand.paperElevated : '#eef4e7',
+    textPrimary: isDark ? brand.cream : '#101610',
+    textSecondary: isDark ? brand.muted : '#4d5c52',
+    divider: isDark ? 'rgba(149, 166, 156, 0.2)' : 'rgba(16, 22, 16, 0.14)',
+  };
 
   let theme = createTheme({
     palette: {
       mode,
       primary: {
-        main: brand.gold,
-        contrastText: isDark ? brand.ink : '#1a1816',
+        main: palette.primary,
+        contrastText: isDark ? brand.ink : '#ffffff',
       },
       secondary: {
-        main: brand.rose,
+        main: palette.secondary,
       },
       background: {
-        default: isDark ? brand.ink : '#f5f1ea',
-        paper: isDark ? brand.paper : '#ffffff',
+        default: palette.defaultBg,
+        paper: palette.paperBg,
       },
       text: {
-        primary: isDark ? brand.cream : '#1a1816',
-        secondary: isDark ? brand.muted : '#5c564d',
+        primary: palette.textPrimary,
+        secondary: palette.textSecondary,
       },
-      info: { main: brand.mist },
-      success: { main: brand.sage },
-      warning: { main: brand.amber },
+      info: { main: palette.info },
+      success: { main: palette.success },
+      warning: { main: palette.warning },
       error: { main: '#c45c5c' },
-      divider: isDark ? 'rgba(154, 146, 136, 0.18)' : 'rgba(26, 24, 22, 0.12)',
+      divider: palette.divider,
     },
     typography: {
       fontFamily: '"Inter", "system-ui", sans-serif',
@@ -48,6 +61,11 @@ export const buildTheme = (mode: PaletteMode) => {
         styleOverrides: {
           body: {
             transition: 'background-color 0.3s ease, color 0.3s ease',
+            background: isDark
+              ? brand.ink
+              : `radial-gradient(circle at 8% 15%, rgba(47, 107, 0, 0.12), transparent 32%),
+                 radial-gradient(circle at 85% 8%, rgba(215, 40, 67, 0.1), transparent 26%),
+                 ${palette.defaultBg}`,
           },
         },
       },
@@ -59,7 +77,9 @@ export const buildTheme = (mode: PaletteMode) => {
             transition: 'all 0.3s ease',
             '&:hover': {
               transform: 'translateY(-2px)',
-              boxShadow: `0 8px 20px rgba(201, 168, 108, 0.35)`,
+              boxShadow: isDark
+                ? `0 8px 20px ${alpha('gold', 0.32)}`
+                : '0 8px 20px rgba(47, 107, 0, 0.2)',
             },
             '&:active': { transform: 'scale(0.97)' },
           },
@@ -80,7 +100,9 @@ export const buildTheme = (mode: PaletteMode) => {
             transition: 'transform 0.3s ease, box-shadow 0.3s ease',
             '&:hover': {
               transform: 'translateY(-4px)',
-              boxShadow: `0 20px 40px rgba(201, 168, 108, 0.18)`,
+              boxShadow: isDark
+                ? `0 20px 40px ${alpha('gold', 0.14)}`
+                : '0 20px 40px rgba(16, 22, 16, 0.12)',
             },
           },
         },
